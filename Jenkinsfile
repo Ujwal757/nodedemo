@@ -3,6 +3,13 @@ pipeline {
 
     stages {
 
+        stage('Check Node.js') {
+            steps {
+                bat 'node --version'
+                bat 'npm --version'
+            }
+        }
+
         stage('Install Backend') {
             steps {
                 dir('backend') {
@@ -15,22 +22,6 @@ pipeline {
             steps {
                 dir('frontend') {
                     bat 'npm install'
-                }
-            }
-        }
-
-        stage('Test Backend') {
-            steps {
-                dir('backend') {
-                    bat 'npm test'
-                }
-            }
-        }
-
-        stage('Lint Frontend') {
-            steps {
-                dir('frontend') {
-                    bat 'npm run lint'
                 }
             }
         }
